@@ -1,0 +1,220 @@
+# Terminal AI Assistant - Color Scheme Reference
+
+## ANSI Color Codes Used
+
+This document defines the color palette used throughout the application for consistent terminal theming.
+
+---
+
+## Primary Colors
+
+| Color Name | ANSI Code | Escape Sequence | RGB Approximation | Usage |
+|------------|-----------|-----------------|-------------------|-------|
+| Black | 30 | `\x1b[30m` | #000000 | Background, dim text |
+| Red | 31 | `\x1b[31m` | #FF5555 | Errors, warnings, destructive actions |
+| Green | 32 | `\x1b[32m` | #50FA7B | Success, confirmations, positive states |
+| Yellow | 33 | `\x1b[33m` | #F1FA8C | Warnings, pending states, highlights |
+| Blue | 34 | `\x1b[34m` | #8BE9FD | Information, file operations, links |
+| Magenta | 35 | `\x1b[35m` | #BD93F9 | Brand elements, headers, special items |
+| Cyan | 36 | `\x1b[36m` | #8BE9FD | Primary branding, banners, titles |
+| White | 37 | `\x1b[37m` | #F8F8F2 | Default text, user input |
+
+---
+
+## Text Styles
+
+| Style | ANSI Code | Escape Sequence | Usage |
+|-------|-----------|-----------------|-------|
+| Reset | 0 | `\x1b[0m` | Clear all styles |
+| Bold | 1 | `\x1b[1m` | Headers, important text |
+| Dim | 2 | `\x1b[2m` | Secondary info, hints |
+| Underline | 4 | `\x1b[4m` | Links, emphasis |
+| Inverse | 7 | `\x1b[7m` | Selected items, alerts |
+
+---
+
+## Color Usage Guidelines
+
+### ✅ Success States (Green - \x1b[32m)
+- File write operations completed
+- Command execution successful
+- Configuration loaded
+- Tests passing
+
+**Example:** `✅ [Filesystem] File written successfully`
+
+---
+
+### ❌ Error States (Red - \x1b[31m)
+- File not found
+- Command execution failed
+- API errors
+- Invalid input
+
+**Example:** `❌ [Error] Failed to read file: permission denied`
+
+---
+
+### ⚠️ Warnings (Yellow - \x1b[33m)
+- Deprecated features
+- Potential issues
+- Pending operations
+- User attention needed
+
+**Example:** `⚠️ [Warning] File will be overwritten`
+
+---
+
+### ℹ️ Information (Blue - \x1b[34m)
+- File paths
+- Command output
+- Status updates
+- Help text
+
+**Example:** `📁 [Info] Reading: /path/to/file.txt`
+
+---
+
+### 🎨 Brand Elements (Cyan/Magenta - \x1b[36m/\x1b[35m)
+- Welcome banner
+- Section headers
+- Logo/Title text
+- Special announcements
+
+**Example:** `🤖 TERMINAL AI ASSISTANT`
+
+---
+
+### 📝 User Input (White - \x1b[37m)
+- User prompts
+- Typed commands
+- Query text
+- Standard output
+
+**Example:** `user@workspace $ _`
+
+---
+
+## Implementation Examples
+
+### TypeScript/JavaScript
+
+```typescript
+const colors = {
+    reset: '\x1b[0m',
+    red: '\x1b[31m',
+    green: '\x1b[32m',
+    yellow: '\x1b[33m',
+    blue: '\x1b[34m',
+    magenta: '\x1b[35m',
+    cyan: '\x1b[36m',
+    white: '\x1b[37m',
+    bold: '\x1b[1m',
+    dim: '\x1b[2m'
+};
+
+function success(message: string): string {
+    return `${colors.green}✅ ${message}${colors.reset}`;
+}
+
+function error(message: string): string {
+    return `${colors.red}❌ ${message}${colors.reset}`;
+}
+
+function info(message: string): string {
+    return `${colors.blue}ℹ️ ${message}${colors.reset}`;
+}
+```
+
+### Python
+
+```python
+class Colors:
+    RESET = '\033[0m'
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    WHITE = '\033[97m'
+    BOLD = '\033[1m'
+    DIM = '\033[2m'
+
+def success(message):
+    return f"{Colors.GREEN}✅ {message}{Colors.RESET}"
+
+def error(message):
+    return f"{Colors.RED}❌ {message}{Colors.RESET}"
+```
+
+---
+
+## Accessibility Considerations
+
+### Contrast Ratios
+All color combinations meet WCAG AA standards for terminal use:
+- White on Black: 21:1 (AAA)
+- Yellow on Black: 15:1 (AAA)
+- Cyan on Black: 10:1 (AA)
+
+### Color Blindness Support
+- Never rely solely on color to convey information
+- Always include icons/emojis as secondary indicators
+- Use text labels alongside color coding
+
+### High Contrast Mode
+For users with high contrast terminal themes:
+- Colors adapt to terminal's palette
+- Bold/dim styles provide additional differentiation
+- Icons remain visible regardless of color settings
+
+---
+
+## Dark Theme Optimization
+
+This application is optimized for dark terminal backgrounds:
+- Recommended background: #1E1E1E to #2D2D2D
+- Recommended foreground: #F8F8F2 to #FFFFFF
+- Tested with: iTerm2, Windows Terminal, GNOME Terminal, VS Code Terminal
+
+---
+
+## Quick Reference Card
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    COLOR QUICK REFERENCE                      │
+├──────────────────────────────────────────────────────────────┤
+│  \x1b[31m RED       \x1b[0m    Errors, Destructive Actions            │
+│  \x1b[32m GREEN     \x1b[0m    Success, Confirmations                 │
+│  \x1b[33m YELLOW    \x1b[0m    Warnings, Pending                      │
+│  \x1b[34m BLUE      \x1b[0m    Information, Files                     │
+│  \x1b[35m MAGENTA   \x1b[0m    Brand, Headers                         │
+│  \x1b[36m CYAN      \x1b[0m    Titles, Banners                        │
+│  \x1b[37m WHITE     \x1b[0m    Default Text, Input                    │
+│  \x1b[1m  BOLD      \x1b[0m    Emphasis                               │
+│  \x1b[2m  DIM       \x1b[0m    Secondary Info                         │
+│  \x1b[0m  RESET     \x1b[0m    Clear All Styles                       │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Testing Your Terminal
+
+Run this command to test color support:
+
+```bash
+node -e "console.log('\x1b[31mRED\x1b[32mGREEN\x1b[33mYELLOW\x1b[34mBLUE\x1b[35mMAGENTA\x1b[36mCYAN\x1b[37mWHITE\x1b[0m')"
+```
+
+Or run our banner script:
+
+```bash
+node ui-ux/banner.js
+```
+
+---
+
+For more UI/UX details, see [INTERFACE_PREVIEW.md](./INTERFACE_PREVIEW.md).
